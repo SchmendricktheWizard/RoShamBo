@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
@@ -12,17 +13,56 @@ namespace ConsoleApp1
     {
         public int wins;
         public int losses;
-        private Random Random = new Random();
+        private Random random = new Random();
 
+        private string randString()
+        {
+            //generates a random number between 0 and 2
+           int rand =  random.Next(0, 2);
+            //switch statements are basically if else statements for
+            // case 0 means if rand == 0
+            // and so on 
+            // break gets out of the switch statment
+            
+            //if
+            switch (rand)
+            {
+                // if rand == 0
+                case 0:
+                    // return "R" since this function returns a string
+                    return "R";
+                    break;
+                case 1:
+                    return "P";
+                    break;
+                case 2:
+                    return "S";
+                    break;
+                    /* default  occurs when a case number is not
+                     * 0 1 2 ex if case =3 then it will return e 
+                     * for error */
+                default:
+                    return "E";
+                    break;
+
+            }
+
+        }
         public void play()
         {
-            String playerChoice;
-            String computerChoice;
+            string playerChoice;
+            /*declares computer choice but initalses
+             * with the return value from  function 
+             * that was created above*/
+            string computerChoice = randString();
+            // for debugging comment this out when not testing
+            Console.WriteLine("Computer Chose {0} Comment out line under comment marker 1 to hide", computerChoice);
             Console.WriteLine("To play, select either Rock (R), Paper (P), or Scissors (S)");
             Console.WriteLine("Best of 3 wins, good luck!\n\n");
             Console.Write("Choose your weapon: ");
             playerChoice = Console.ReadLine();
-            
+            int result = game(playerChoice, computerChoice);
+            Console.WriteLine(result);
         }
 
         private int game(String playerChoice, String computerChoice)
@@ -68,3 +108,4 @@ namespace ConsoleApp1
 
     }
 }
+
