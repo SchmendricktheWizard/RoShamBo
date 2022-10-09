@@ -20,7 +20,7 @@ namespace ConsoleApp1
         private string randString()
         {
             //generates a random number between 0 and 2
-           int rand =  random.Next(0, 2);
+           int rand =  random.Next(0, 3);
             //switch statements are basically if else statements for
             // case 0 means if rand == 0
             // and so on 
@@ -61,55 +61,57 @@ namespace ConsoleApp1
              * that was created above*/
             string computerChoice = randString();
             // for debugging comment this out when not testing
-            Console.WriteLine("Computer Chose {0} Comment out line under comment marker 1 to hide", computerChoice);
+            //Console.WriteLine("Computer Chose {0} Comment out line under comment marker 1 to hide", computerChoice);
             Console.WriteLine("Best of 3 wins, good luck!\n");
             while(true)
             {
+                Console.Clear();
+                
                 switch (result)
                 {
-                    case 0:
-                        Console.WriteLine("A tie! Try again.\n\n");
-                        Console.Write("Choose your weapon: ");
-                        playerChoice = Console.ReadLine();
+                    case 0: //Tie
+                        Console.WriteLine(playerWins + "   " + computerWins);
+                        Console.WriteLine("A tie! Try again.");
                         break;
-                    case 1:
+                    case 1: //Computer Win
                         computerWins++;
-                        if (computerWins == 2)
-                        {
-                            Console.WriteLine("Alas, you're done for. Better luck next time.");
-                            goto end;
-                        }
-                        Console.WriteLine("You lost! But it's not over yet.\n\n");
-                        Console.Write("Choose your weapon: ");
-                        playerChoice = Console.ReadLine();
+                        Console.WriteLine(playerWins + "   " + computerWins);
+                        Console.WriteLine("You lost! But it's not over yet.");
                         break;
-                    case 2:
+                    case 2: //Player Win
                         playerWins++;
-                        if (playerWins == 2)
-                        {
-                            Console.WriteLine("Congratulations, You Win!");
-                            goto end;
-                        }
-                        Console.WriteLine("You Won! But it's not over yet.\n\n");
-                        Console.Write("Choose your weapon: ");
-                        playerChoice = Console.ReadLine();
+                        Console.WriteLine(playerWins + "   " + computerWins);
+                        Console.WriteLine("You Won! But it's not over yet.");
                         break;
-                    case 3:
-                        Console.WriteLine("Enter R for Rock, P for Paper, or S for Scissors.\n\n");
-                        Console.Write("Choose your weapon: ");
-                        playerChoice = Console.ReadLine();
-                        result = game(playerChoice, computerChoice);
+                    case 3: //Starting, as well as error or invalid input
+                        Console.WriteLine(playerWins + "   " + computerWins);
+                        Console.WriteLine("Enter R for Rock, P for Paper, or S for Scissors.");
                         break;
-                    default:
+                    default: //Shouldn't happen
                         Console.WriteLine("I'm confused");
                         break;
                 }
+                //End game if best of 3 is reached
+                if (computerWins == 2)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Alas, you're done for. Better luck next time.");
+                    break;
+                }
+                if (playerWins == 2)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Congratulations, You Win!");
+                    break;
+                }
+
+                Console.Write("\n\nChoose your weapon: ");
+                playerChoice = Console.ReadLine();
                 computerChoice = randString();
                 result = game(playerChoice, computerChoice);
-                Console.Clear();
+                
             }
-        end:
-             Console.Read();
+             Console.ReadKey();
         }
 
         private int game(String playerChoice, String computerChoice)
