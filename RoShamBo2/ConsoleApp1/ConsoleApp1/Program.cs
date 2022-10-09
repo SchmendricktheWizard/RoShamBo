@@ -19,11 +19,7 @@ namespace ConsoleApp1
             //just makes a forever loop so you can play the game until you close it
             while (true)
             {
-                //play function starts game
-                // since its a public method i can call it outside 
-                // of the class
                 roShamBo.play();
-
             }
 
 
