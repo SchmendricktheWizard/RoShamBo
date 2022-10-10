@@ -19,7 +19,7 @@ namespace ConsoleApp1
             //just makes a forever loop so you can play the game until you close it
             while (true)
             {
-                roShamBo.Play();
+                roShamBo.play();
             }
 
 
