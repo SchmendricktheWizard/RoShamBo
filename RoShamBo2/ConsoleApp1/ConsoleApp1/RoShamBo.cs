@@ -185,11 +185,12 @@ namespace ConsoleApp1
             //Input player and computer choice in the form of a single character string
             //Outputs 0 for a tie, 1 for a computer win, and 2 for a player win, 3 for error
             //Rocks
+            if (!(playerChoice == "R" | playerChoice == "P" | playerChoice == "S"))
+                return 3;
             Animation(computerChoice,playerChoice);
             if (playerChoice == computerChoice)
-            {
                 return 0;
-            }
+
             switch (playerChoice)
             {
                 case "R":
